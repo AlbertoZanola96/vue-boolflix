@@ -8,8 +8,11 @@
       <ul>
         <li><span>Titolo:</span> {{ item.title ? item.title : item.name}}</li>
         <img class="imgBand" :src="require(`../assets/bandiere/${item.original_language}.png`)" alt="">
-        <li><span>Voto:</span> {{ item.vote_average }}</li>
       </ul>
+    </div>
+    <div class="star">
+      <span>Voto:</span>
+      <i v-for="x in 5" :key="x"  class="fa-star" :class="(x <= votoIn5()) ? 'fas' : 'far'"></i>
     </div>
   </div>
 </template>
@@ -18,19 +21,26 @@
 
 export default {
   name: 'Element',
-  props: ['item']
+  props: ['item'],
+  methods:{
+    votoIn5() {
+      return Math.round(this.item.vote_average / 2 );
+    }
+  }
 }
 
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+@import '~@fortawesome/fontawesome-free/css/all.min.css';
+
   .container {
     .copertina {
       
       .imgCop {
-        width: 140px;
-        height: 200px;
+        width: 300px;
+        height: 450px;
       }
     }
   
