@@ -32,7 +32,7 @@ export default {
 <style scoped lang="scss">
     .container {
         width: 100%;
-        height: calc(100vh - 100px);
+        height: 100%;
         background-color: gray;
     }
 </style>
