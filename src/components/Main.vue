@@ -1,14 +1,18 @@
 <template>
     <div class="container">
-        <ul class="card">
-            <li v-for="(card, index) in cardMovie" :key="index">{{ card.title }} / {{ card.original_language }}</li>
+        <ul class="cards">
+            <Element v-for="card in cardMovie" :key="card.id" :item="card"/>
         </ul>
     </div>
 </template>
 
 <script>
+import Element from './Element.vue'
 export default {
   name: 'Main',
+  components: {
+      Element
+    }, 
   props: ['cardMovie']
 
 }
