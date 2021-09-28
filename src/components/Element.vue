@@ -1,10 +1,10 @@
 <template>
     <div>
         <ul>
-          <li><h4>Titolo:</h4> {{ item.title }}</li>
-          <!-- <li><h4>Lingua:</h4> {{ item.original_language }}</li> -->
+          <li><span>Titolo:</span> {{ item.title ? item.title : item.name}}</li>
+          <!-- <li><span>Lingua:</span> {{ item.original_language }}</li> -->
           <img :src="require(`../assets/bandiere/${item.original_language}.png`)" alt="">
-          <li><h4>Voto:</h4> {{ item.vote_average }}</li>
+          <li><span>Voto:</span> {{ item.vote_average }}</li>
         </ul>
     </div>
 </template>
@@ -33,6 +33,11 @@ export default {
     img {
       width: 30px;
       height: 20px;
+    }
+
+    span {
+      font-size: 25px;
+      font-weight: 600;
     }
   }
 </style>

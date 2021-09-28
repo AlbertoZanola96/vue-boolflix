@@ -2,7 +2,7 @@
   <div id="app">
     <Header @doResearch="ricerca"/>
 
-    <Main :cardMovie="film"/>
+    <Main :cardMovie="film" :cardTv="serie"/>
   </div>
 </template>
 
@@ -22,13 +22,18 @@ export default {
       apiUrl: "https://api.themoviedb.org/3/search/",
       apiKey: 'f5b8768754bedd89a3401c68be8ae40d',
       film: [],
+      serie: [],
     }
   },
   methods: {
     ottieniFilm(apiParams) {
       axios.get(this.apiUrl + "movie", apiParams).then((response) => {
-        console.log(this.apiUrl + "movie", apiParams);
         this.film = response.data.results;
+      });
+    },
+      ottieniSerie(apiParams) {
+        axios.get(this.apiUrl + "tv", apiParams).then((response) => {
+          this.serie = response.data.results;
       });
     },
     ricerca(searchText) {
@@ -39,6 +44,7 @@ export default {
         },
       };
       this.ottieniFilm(paramsObj);
+      this.ottieniSerie(paramsObj);
     },
   }
 }

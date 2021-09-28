@@ -1,9 +1,19 @@
 <template>
     <div class="container">
-        <ul class="cards">
-            <Element v-for="card in cardMovie" :key="card.id" :item="card"/>
-        </ul>
+        <div class="film">
+            <h3>FILM</h3>
+            <ul class="cards">
+                <Element v-for="card in cardMovie" :key="card.id" :item="card"/>
+            </ul>
+        </div>
+        <div class="serieTv">
+            <h3>SERIE TV</h3>
+            <ul class="cards">
+                <Element v-for="card in cardTv" :key="card.id" :item="card"/>
+            </ul>
     </div>
+</div>
+
 </template>
 
 <script>
@@ -13,7 +23,7 @@ export default {
   components: {
       Element
     }, 
-  props: ['cardMovie']
+  props: ['cardMovie', 'cardTv']
 
 }
 </script>
