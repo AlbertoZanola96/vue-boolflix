@@ -1,31 +1,53 @@
 <template>
   <div id="app">
-    <Header/>
+    <Header @doResearch="ricerca"/>
 
-    <Main/>
+    <Main :cardMovie="film"/>
   </div>
 </template>
 
 <script>
-import Header from './components/Header.vue'
-import Main from './components/Main.vue'
+import axios from 'axios';
+import Header from './components/Header.vue';
+import Main from './components/Main.vue';
 
 export default {
   name: 'App',
   components: {
     Header,
     Main
+  },
+  data() {
+    return {
+      apiUrl: "https://api.themoviedb.org/3/search/",
+      apiKey: 'f5b8768754bedd89a3401c68be8ae40d',
+      film: [],
+    }
+  },
+  methods: {
+    ottieniFilm(apiParams) {
+      axios.get(this.apiUrl + "movie", apiParams).then((response) => {
+        console.log(this.apiUrl + "movie", apiParams);
+        this.film = response.data.results;
+      });
+    },
+    ricerca(searchText) {
+      const paramsObj = {
+        params: {
+          api_key: this.apiKey,
+          query: searchText,
+        },
+      };
+      this.ottieniFilm(paramsObj);
+    },
   }
 }
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 </style>
